@@ -168,7 +168,21 @@ class HeadBehaviors:
 
 
 
-if __name__ == '__main__':
+
+
+bot = []
+proxy = []
+csp = []
+z = 40.0 # distance
+x = 0.0  # left right
+y = -2.0 # up down 
+d = [z, x, y] # all three in an array
+r = 0.0  # set roll
+
+def start():
+    global csp
+    global bot
+    global proxy
     # Init the robot
     proxy, bot, beh = init_robot()
     
@@ -189,21 +203,41 @@ if __name__ == '__main__':
     #eye_test.roll_backforth()
 
     csp.enable()
-    des = 10
-    #csp.set_theta_j2_deg(des)
+    return
 
-    #   distance (optical frame)     Left/right     Up/Down
-    x = [ 40.1,                         20.0,        -2.0]
-    
-    print csp.param.origin
-    csp.set_target_csp_frame(x)
-    csp.set_theta_j2_deg(0)
-    print csp.command
-    #csp.set_target_head_base_frame(x)
-    #csp.command.target[0] = csp.param.origin[0]
-    #csp.command.target[1] = csp.param.origin[1]
-    #csp.command.target[2] = csp.param.origin[2]
-    print csp.command.target
+def setX(xx):
+    global x
+    global d
+    x = xx
+    d[1] = x
+    return
+
+def setY(xx):
+    global y
+    global d
+    y = xx
+    d[2] = y
+    return
+
+def setZ(xx):
+    global z
+    global d
+    z = xx
+    d[0] = z
+    return
+
+def setR(rr):
+    global r
+    r = rr
+    return
+
+def go():
+    global d
+    global r
+    csp.set_target_csp_frame(d)
+    csp.set_theta_j2_deg(r)
+    ts = time.time()
+    proxy.step()
 
 #self.joint_names={'NeckTilt':0,
 #                                  'NeckPan':1,
@@ -213,21 +247,12 @@ if __name__ == '__main__':
 #                                  'EyePanRight':5,
 #                                  'EyePanLeft':6}
     # initilize data
-    ts = time.time()
-    proxy.step()
 
-    try:
-        while True:
-           # proxy.step()
-           # beh.step(verbose=True)
-           a = 1
-    except (KeyboardInterrupt,EOFError):
-        print '---- Exiting ----'
-        bot.set_motor_power_off()
-        proxy.step()
-        time.sleep(0.25)
-        proxy.stop()
-        pass
+def stop():
+    global csp
+    global bot
+    global proxy
+    print '---- Exiting ----'
     bot.set_motor_power_off()
     proxy.step()
     time.sleep(0.25)
