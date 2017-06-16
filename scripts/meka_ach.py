@@ -193,7 +193,7 @@ if __name__ == '__main__':
     #csp.set_theta_j2_deg(des)
 
     #   distance (optical frame)     Left/right     Up/Down
-    x = [ 40.1,                         0.0,        -2.0]
+    x = [ 40.1,                         20.0,        -2.0]
     
     print csp.param.origin
     csp.set_target_csp_frame(x)
@@ -218,8 +218,9 @@ if __name__ == '__main__':
 
     try:
         while True:
-            proxy.step()
-            beh.step(verbose=True)
+           # proxy.step()
+           # beh.step(verbose=True)
+           a = 1
     except (KeyboardInterrupt,EOFError):
         print '---- Exiting ----'
         bot.set_motor_power_off()
