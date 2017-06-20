@@ -215,7 +215,7 @@ def setX(xx):
 def setY(xx):
     global y
     global d
-    y = xx
+    y = xx - 0.5
     d[2] = y
     return
 
