@@ -54,7 +54,7 @@ def reset(delay = None):
     return 0
   ma.time.sleep(np.abs(delay))
 
-def look(side,correct = None, delay = None, hold = None):
+def look(side,correct = None, delay = None, hold = None, record = None):
 
   if(correct == None):
     return look_side(side)
@@ -76,7 +76,11 @@ def look(side,correct = None, delay = None, hold = None):
   else:
     return 1
   ma.time.sleep(np.abs(hold))
-  return 0
+
+  if(record == None):
+    return 0
+
+  
 
 
 
