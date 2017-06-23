@@ -5,17 +5,17 @@ import numpy as np
 
 def left():
   ma.setX(0.5)
-  ma.setY(0.0)
+  ma.setY(-0.4)
   ma.setZ(1.0)
-  ma.setR(0)
+  ma.setR(10)
   ma.go()
   return 0
 
 def right():
   ma.setX(-0.5)
-  ma.setY(0.0)
+  ma.setY(-0.4)
   ma.setZ(1.0)
-  ma.setR(0)
+  ma.setR(-10)
   ma.go()
   return 0
 

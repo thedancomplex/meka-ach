@@ -9,11 +9,11 @@ if __name__ == '__main__':
 
     look.reset(5.0)
 
-    look.look('right', True, 2.0, 5.0)
+    look.look('right', True, -1.0, 5.0)
 
     look.reset(5.0)
 
-    look.look('left', True, 2.0, 5.0)
+    look.look('left', True, -1.0, 5.0)
 
     look.reset(5.0)
 
