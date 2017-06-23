@@ -9,6 +9,9 @@ def init(port, timeout_def = None):
   else:  
     ser = serial.Serial(port, 9600,timeout=timeout_def)
 
+def close():
+  ser.close()
+
 def get():
   global ser
   out = -1
@@ -19,11 +22,12 @@ def get():
     return ('F', t)
   if(out == []):
     return ('F', t)
-  if(out == NULL):
+  if(out == None):
     return ('F', t)
-  if(out[0] == 'L'):
-    return ('L', t)
-  elif(out[0] == 'R'):
-    return ('R', t)
+  if(len(out) > 0):
+    if(out[0] == 'L'):
+      return ('L', t)
+    elif(out[0] == 'R'):
+      return ('R', t)
   return('F',t)
  

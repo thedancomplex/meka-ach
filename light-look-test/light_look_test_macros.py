@@ -2,6 +2,8 @@ import meka_ach as ma
 import light_ctrl as light
 import light_look_test_macros as look
 import numpy as np
+import time
+
 
 def left():
   ma.setX(0.5)
@@ -54,16 +56,18 @@ def reset(delay = None):
     return 0
   ma.time.sleep(np.abs(delay))
 
-def look(side,correct = None, delay = None, hold = None, record = None):
-
+def look(side,correct = None, delay = None, record = None):
+  t = -1
   if(correct == None):
     return look_side(side)
     
   if(delay == 0):
     look(side)
+    t = time.time()
     light.light(side,correct)
     light.light(other_side(side), not correct)
   elif(delay > 0):
+    t = time.time()
     light.light(side,correct)
     light.light(other_side(side), not correct)
     ma.time.sleep(delay)
@@ -71,14 +75,17 @@ def look(side,correct = None, delay = None, hold = None, record = None):
   elif(delay < 0):
     look(side)
     ma.time.sleep(np.abs(delay))
+    t = time.time()
     light.light(side,correct)
     light.light(other_side(side), not correct)
   else:
-    return 1
-  ma.time.sleep(np.abs(hold))
+    return -1
+  #ma.time.sleep(np.abs(hold))
+
+  return t
 
   if(record == None):
-    return 0
+    return t
 
   
 
