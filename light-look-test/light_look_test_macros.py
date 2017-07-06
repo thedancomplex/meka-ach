@@ -6,17 +6,17 @@ import time
 
 
 def left():
-  ma.setX(0.5)
+  ma.setX(5.5)
   ma.setY(-0.4)
-  ma.setZ(1.0)
+  ma.setZ(0.1)
   ma.setR(10)
   ma.go()
   return 0
 
 def right():
-  ma.setX(-0.5)
+  ma.setX(-5.5)
   ma.setY(-0.4)
-  ma.setZ(1.0)
+  ma.setZ(0.1)
   ma.setR(-10)
   ma.go()
   return 0
@@ -77,6 +77,7 @@ def look(side,correct = None, delay = None, record = None):
     look(side)
     ma.time.sleep(np.abs(delay))
     ma.motor_off()  # added to make it stop faster
+    time.sleep(0.2)
     t = time.time()
     light.light(side,correct)
     light.light(other_side(side), not correct)

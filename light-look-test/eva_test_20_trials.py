@@ -133,7 +133,14 @@ def doTest():
 
     # Set log filename (optional, default = look_light_test.log)
     log_name = 'log_' + time.strftime("%Y-%m-%d") + '_' + time.strftime("%H%M")  
-    print test.log_name(log_name)    
+    print '------------------------------'
+    print '------------------------------'
+    print '------------------------------'
+    print 'Log Name = ',test.log_name(log_name)    
+    print '------------------------------'
+    print '------------------------------'
+    print '------------------------------'
+    print 'The Order List: ', to_list
     while (to_i < to_max):
 
       test.reset()
