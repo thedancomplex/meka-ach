@@ -52,6 +52,7 @@ def reset(delay = None):
   look('center')
   light.light('left',False)
   light.light('right',False)
+  ma.motor_on()
   if(delay == None):
     return 0
   ma.time.sleep(np.abs(delay))
@@ -75,6 +76,7 @@ def look(side,correct = None, delay = None, record = None):
   elif(delay < 0):
     look(side)
     ma.time.sleep(np.abs(delay))
+    ma.motor_off()  # added to make it stop faster
     t = time.time()
     light.light(side,correct)
     light.light(other_side(side), not correct)

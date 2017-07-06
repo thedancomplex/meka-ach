@@ -52,7 +52,7 @@ class LookBehaviors:
             self.fd_target=None
             self.fd_rects=None
 
-
+    
     def stop(self):
         self.csp.set_target_csp_frame(m3h.spherical_to_cartesian(0,0))
         if self.use_fd:
@@ -247,6 +247,21 @@ def go():
 #                                  'EyePanRight':5,
 #                                  'EyePanLeft':6}
     # initilize data
+def motor_off():
+    global csp
+    global bot
+    global proxy
+    bot.set_motor_power_off()
+    proxy.step()
+
+
+def motor_on():
+    global csp
+    global bot
+    global proxy
+    bot.set_motor_power_on()
+    proxy.step()
+
 
 def stop():
     global csp
