@@ -4,17 +4,11 @@
 #import touch_input as ti
 import test_macros as test
 import time
+import random
 
-if __name__ == '__main__':
-
-    # Start Touch Input
-    # ti.init( port, timeout)
-    # Return: Null
-    test.init('/dev/ttyACM0',5)
-
-    #test.init('/dev/ttyACM0',5)
-
-    to = [('left', 'left'),
+to_list = []
+to_max = 1
+to =     [('left', 'left'),
 	  ('left', 'left'),
           ('left', 'left'),
           ('left', 'left'),
@@ -95,10 +89,46 @@ if __name__ == '__main__':
           ('right','left'),
           ('right','left')]
 
+
+
+def getNext():
+    global to
+    global to_list
+    global to_max
+
+    inList = True
+    num = -1
+    while(inList):   
+      num = random.randint(0,to_max-1)
+      if num in to_list:
+        inList = True
+      else:
+        to_list.extend([num])
+        inList = False
+    print '------------------------------'
+    print '------------------------------'
+    print '------------------------------'
+    print 'The Order List: ', to_list
+    print '------------------------------'
+    print '------------------------------'
+    print '------------------------------'
+    return num
+
+def doTest():
+    global to
+    global to_list
+    global to_max
+
+    # Start Touch Input
+    # ti.init( port, timeout)
+    # Return: Null
+    test.init('/dev/ttyACM0',5)
+
+    #test.init('/dev/ttyACM0',5)
+
     to_i = 0;
     to_max = len(to)
     print 'Trial length = ', to_max
-
 
 
     # Set log filename (optional, default = look_light_test.log)
@@ -134,7 +164,8 @@ if __name__ == '__main__':
       print '------------------------------'
       print '------------------------------'
       raw_input("Press ENTER For Next Run")
-      tto = to[to_i]
+      the_i = getNext()
+      tto = to[the_i]
       robot_look = tto[0]
       bulb_light = tto[1]
       out = test.run(robot_look, bulb_light, robot_head_delay, robot_reset_delay)
@@ -145,6 +176,9 @@ if __name__ == '__main__':
       print '------------------------------'
       print '------------------------------'
       print 'Test Number = ', to_i, " - robot = ", robot_look, ' - bulb = ', bulb_light
+      print '------------------------------'
+      print '------------------------------'
+      print '------------------------------'
       to_i += 1
       
 
@@ -162,5 +196,8 @@ if __name__ == '__main__':
 #      test.reset()
 
     # Stops system
+
     test.stop()
 
+if __name__ == '__main__':
+    doTest()
