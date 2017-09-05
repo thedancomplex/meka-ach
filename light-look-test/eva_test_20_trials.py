@@ -5,6 +5,10 @@
 import test_macros as test
 import time
 import random
+import sys
+
+
+thePort = '/dev/ttyACM0'
 
 to_list = []
 to_max = 1
@@ -118,11 +122,12 @@ def doTest():
     global to
     global to_list
     global to_max
-
+    global thePort
     # Start Touch Input
     # ti.init( port, timeout)
     # Return: Null
-    test.init('/dev/ttyACM0',5)
+    ####test.init('/dev/ttyACM0',5)
+    test.init(thePort,5)
 
     #test.init('/dev/ttyACM0',5)
 
@@ -200,10 +205,13 @@ def doTest():
       # NEW LINE
       test.log(out)
 
+      test.reset(0.1)
+      test.left()
+      time.sleep(0.1)
+
 #      test.reset()
 
     # Stops system
-
     test.reset(5.0)
     test.stop()
     print '------------------------------'
@@ -215,5 +223,8 @@ def doTest():
     print '------------------------------'
 
 if __name__ == '__main__':
+    global thePort
+    if(len(sys.argv) >1):
+       thePort = sys.argv[1]
     doTest()
     

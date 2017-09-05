@@ -15,6 +15,9 @@ def init(port, timeout = None):
   #Start Meka Ach
   ma.start()
 
+def left():
+  look.left()
+
 def stop():
   # Close the serial port
   ti.close()

@@ -6,19 +6,20 @@ import time
 
 
 def left():
-  ma.setX(5.5)
+  ma.setX(55.5)
   ma.setY(-0.4)
-  ma.setZ(0.1)
+  ma.setZ(0.01)
   ma.setR(10)
   ma.go()
   return 0
 
 def right():
-  ma.setX(-5.5)
-  ma.setY(-0.4)
-  ma.setZ(0.1)
+  ma.setX(-155.5)
+  ma.setY(-0.8)
+  ma.setZ(0.01)
   ma.setR(-10)
   ma.go()
+  time.sleep(0.2)
   return 0
 
 def center():
